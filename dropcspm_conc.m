@@ -12,10 +12,11 @@ close all
 
 %To stop this program enter cntrl shift esc
 
-%First file name for output
-%IMPORTANT: This should be a .mat file
-handles.dropcProg.output_file='C:\Users\Behavior\Desktop\Justin\test5';
-%handles.dropcProg.output_file='/Users/restrepd/Documents/Projects/testdropc/m01.mat';
+handles.dropcProg.output_filename='R9_spmc_iso_lohi_6';
+% handles.dropcProg.output_file='C:\Users\Restrepo\Desktop\Justin\181101_R6_spm_1iso_MO.mat';
+handles.dropcProg.output_path='C:\Users\OLF2\Desktop\Justin\data\';
+formatOut = 'yymmdd'; yymmdd = datestr(now,formatOut); file_end = '.mat';
+handles.dropcProg.output_file=([handles.dropcProg.output_path yymmdd '_' handles.dropcProg.output_filename file_end]);
 
 %Reinforce on S+ only? (1=yes, go-no go, 0=no, reinforce both, go-go)
 handles.dropcProg.go_nogo=1;
@@ -23,25 +24,48 @@ handles.dropcProg.go_nogo=1;
 %Which odor?
 handles.dropcProg.odorName='Isoamyl acetate';
 
+%% Forward
 %Enter S+ valve (1,2,4,8,16,32,64,128) and odor name
-handles.dropcProg.odorV(1)=uint8(1); %Make sure to use uint8
-handles.dropcProg.odorPercent(1)=10;
+% handles.dropcProg.odorV(1)=uint8(32); %Make sure to use uint8
+% handles.dropcProg.odorPercent(1)=10;
+% 
+% handles.dropcProg.odorV(2)=uint8(16); %Make sure to use uint8
+% handles.dropcProg.odorPercent(2)=3.165;
+% 
+% handles.dropcProg.odorV(3)=uint8(8); %Make sure to use uint8
+% handles.dropcProg.odorPercent(3)=1;
+% 
+% %Enter S- valves
+% handles.dropcProg.odorV(4)=uint8(4); %Make sure to use uint8
+% handles.dropcProg.odorPercent(4)=0.32;
+% 
+% handles.dropcProg.odorV(5)=uint8(2); %Make sure to use uint8
+% handles.dropcProg.odorPercent(5)=0.1;
+% 
+% handles.dropcProg.odorV(6)=uint8(1); %Make sure to use uint8
+% handles.dropcProg.odorPercent(6)=0.032;
 
-handles.dropcProg.odorV(2)=uint8(2); %Make sure to use uint8
-handles.dropcProg.odorPercent(2)=3.165;
+%% Reverse
+%Enter S+ valve (1,2,4,8,16,32,64,128) and odor name
+handles.dropcProg.odorV(1)=uint8(4); %Make sure to use uint8
+handles.dropcProg.odorPercent(1)=0.03165;
 
-handles.dropcProg.odorV(3)=uint8(4); %Make sure to use uint8
-handles.dropcProg.odorPercent(3)=1;
+handles.dropcProg.odorV(2)=uint8(8); %Make sure to use uint8
+handles.dropcProg.odorPercent(2)=0.1;
 
-handles.dropcProg.odorV(4)=uint8(8); %Make sure to use uint8
-handles.dropcProg.odorPercent(4)=0.3165;
+handles.dropcProg.odorV(3)=uint8(16); %Make sure to use uint8
+handles.dropcProg.odorPercent(3)=0.3165;
 
-handles.dropcProg.odorV(5)=uint8(16); %Make sure to use uint8
-handles.dropcProg.odorPercent(5)=0.1;
+handles.dropcProg.odorV(4)=uint8(32); %Make sure to use uint8
+handles.dropcProg.odorPercent(4)=1;
 
-handles.dropcProg.odorV(6)=uint8(32); %Make sure to use uint8
-handles.dropcProg.odorPercent(6)=0.03165;
+handles.dropcProg.odorV(5)=uint8(64); %Make sure to use uint8
+handles.dropcProg.odorPercent(5)=3.165;
 
+handles.dropcProg.odorV(6)=uint8(128); %Make sure to use uint8
+handles.dropcProg.odorPercent(6)=10;
+
+%%
 %Enter final valve interval in sec (1.5 sec is usual)
 handles.dropcProg.fvtime=1.5;
 
@@ -58,7 +82,7 @@ handles.dropcProg.dt_ra=0.5;
 handles.dropcProg.odor_stop=2.5;
 
 %Enter time for water delivery (sec, try 0.5 s)
-handles.dropcProg.rfTime=0.3;
+handles.dropcProg.rfTime=0.2;
 
 %Enter time per trial (sec, not less than 8 s)
 %Must be larger than TIME_POST+shortTime+dt_ra*dropcProg.noRAsegments+2
